@@ -36,7 +36,12 @@ function Ethdebugger (opts) {
   this.solidityProxy = new SolidityProxy(this.traceManager, this.codeManager)
   this.storageResolver = null
 
-  this.callTree = new InternalCallTree(this.event, this.traceManager, this.solidityProxy, this.codeManager, { includeLocalVariables: true })
+  const includeLocalVariables = true
+  this.callTree = new InternalCallTree(this.event, 
+      this.traceManager,
+      this.solidityProxy,
+      this.codeManager, 
+      { ...opts, includeLocalVariables})
 }
 
 Ethdebugger.prototype.setManagers = function () {
@@ -44,8 +49,13 @@ Ethdebugger.prototype.setManagers = function () {
   this.codeManager = new CodeManager(this.traceManager)
   this.solidityProxy = new SolidityProxy(this.traceManager, this.codeManager)
   this.storageResolver = null
+  const includeLocalVariables = true
 
-  this.callTree = new InternalCallTree(this.event, this.traceManager, this.solidityProxy, this.codeManager, { includeLocalVariables: true })
+  this.callTree = new InternalCallTree(this.event, 
+      this.traceManager, 
+      this.solidityProxy, 
+      this.codeManager, 
+      { ...opts, includeLocalVariables})
 }
 
 Ethdebugger.prototype.resolveStep = function (index) {
