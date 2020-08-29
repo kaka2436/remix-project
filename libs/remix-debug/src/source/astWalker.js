@@ -48,9 +48,8 @@ AstWalker.prototype.walkAstList = function (sourcesList, callback) {
 function manageCallBack (node, callback) {
   if (node.nodeType in callback) {
     return callback[node.nodeType](node)
-  } else {
-    return callback['*'](node)
   }
+  return callback['*'](node)
 }
 
 module.exports = AstWalker
